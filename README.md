@@ -20,7 +20,7 @@ The integration also provides a calendar of upcoming events and a to-do list of 
 
 ### Install with HACS (recommended)
 
-1. Add `[https://github.com/keally1123/medisafe}` as a custom repository as Type: `Integration`
+1. Add `[https://github.com/keally1123/medisafe]` as a custom repository as Type: `Integration`
 2. Click install under "Medisafe" in the Integration tab
 3. Restart Home Assistant
 4. In the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Medisafe"
