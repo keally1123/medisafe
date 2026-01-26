@@ -109,7 +109,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ---
 
-[HA-Medisafe Integration]: https://github.com/c99koder
+[HA-Medisafe Integration]: [https://github.com/c99koder](https://github.com/c99koder/ha-medisafe/tree/main)
 [maintenance-shield]: https://img.shields.io/badge/maintained-Sort_of-brightgreen?style=for-the-badge
 [maintenance]: https://github.com/keally1123
 [integration_blueprint]: https://github.com/custom-components/integration_blueprint
