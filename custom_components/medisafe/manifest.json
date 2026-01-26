@@ -1,6 +1,6 @@
 {
-  "domain": "medisafe_test",
-  "name": "Medisafe_test",
+  "domain": "medisafe",
+  "name": "Medisafe",
   "codeowners": ["@c99koder"],
   "config_flow": true,
   "dependencies": ["http"],
