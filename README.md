@@ -110,24 +110,16 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 [maintenance-shield]: https://img.shields.io/badge/maintained-Sort_of-brightgreen?style=for-the-badge
 [maintenance]: https://github.com/keally1123
-
 [integration_blueprint]: https://github.com/custom-components/integration_blueprint
-
 [black]: https://github.com/psf/black
 [black-shield]: https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge
-
 [commits-shield]: https://img.shields.io/github/commit-activity/y/keally1123/medisafe.svg?style=for-the-badge
 [commits]: https://github.com/keally1123/medisafe/commits/main
-
 [hacs]: https://hacs.xyz
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
-
 [license-shield]: https://img.shields.io/github/license/keally1123/medisafe.svg?style=for-the-badge
-
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [pre-commit-shield]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge
-
 [releases-shield]: https://img.shields.io/github/v/release/keally1123/medisafe?style=for-the-badge
 [releases]: https://github.com/keally1123/medisafe/releases
-
 [user_profile]: https://github.com/keally1123
