@@ -9,11 +9,12 @@
 
 [![hacs][hacsbadge]][hacs]
 [![Project Maintenance][maintenance-shield]][maintenance]
+
 View your medication from [Medisafe Cloud](https://www.medisafe.com/) in [Home Assistant](https://www.home-assistant.io/).
 This integration adds sensors for today's upcoming, taken, skipped, and missed doses, plus sensors for each medication's remaining pills.
 The integration also provides a calendar of upcoming events and a to-do list of medication that need to be refilled.
 
-![example][exampleimg]
+![Medisafe integration screenshot](example.png)
 
 ## Installation
 
@@ -94,7 +95,9 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 
 This project was generated from [@oncleben31](https://github.com/oncleben31)'s [Home Assistant Custom Component Cookiecutter](https://github.com/oncleben31/cookiecutter-homeassistant-custom-component) template.
 
-Code template was mainly taken from [@Ludeeus](https://github.com/ludeeus)'s [integration_blueprint][integration_blueprint] template
+Code template was mainly taken from [@Ludeeus](https://github.com/ludeeus)'s [integration_blueprint][integration_blueprint] template.
+
+Original code for this project came from [@c99koder](https://github.com/c99koder)'s [HA-Medisafe Integration][HA-Medisafe Integration].
 
 ## License
 
@@ -106,13 +109,14 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ---
 
+[HA-Medisafe Integration]: https://github.com/c99koder/ha-medisafe/tree/main
 [maintenance-shield]: https://img.shields.io/badge/maintained-Sort_of-brightgreen?style=for-the-badge
 [maintenance]: https://github.com/keally1123
 [integration_blueprint]: https://github.com/custom-components/integration_blueprint
 [black]: https://github.com/psf/black
 [black-shield]: https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge
 [commits-shield]: https://img.shields.io/github/commit-activity/y/keally1123/medisafe.svg?style=for-the-badge
-[commits]: https://github.com/keally1123/medisafe/commits/main
+[commits]: https://github.com/keally1123/medisafe/commits/develop
 [hacs]: https://hacs.xyz
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
 [license-shield]: https://img.shields.io/github/license/keally1123/medisafe.svg?style=for-the-badge
