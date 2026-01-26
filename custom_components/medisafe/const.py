@@ -17,7 +17,7 @@ DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "0.1.3"
 
 ATTRIBUTION = "Data provided by https://medisafe.com/"
-ISSUE_URL = "https://github.com/keally1123/medisafe/issues
+ISSUE_URL = "https://github.com/keally1123/medisafe/issues"
 
 # Platforms
 PLATFORMS = ["sensor", "todo", "calendar"]
