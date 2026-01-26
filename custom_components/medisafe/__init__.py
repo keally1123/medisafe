@@ -34,7 +34,7 @@ SCAN_INTERVAL = timedelta(minutes=15)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
-async def async_setup(hass: HomeAssistant, config: Config):
+async def async_setup(hass: HomeAssistant, config: dict):
     """Set up this integration using YAML is not supported."""
     return True
 
