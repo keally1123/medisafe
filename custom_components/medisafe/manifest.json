@@ -1,6 +1,6 @@
 {
-  "domain": "medisafe",
-  "name": "Medisafe",
+  "domain": "medisafe_test",
+  "name": "Medisafe_test",
   "codeowners": ["@c99koder"],
   "config_flow": true,
   "dependencies": ["http"],
@@ -8,5 +8,5 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/c99koder/ha-medisafe/issues",
   "requirements": [],
-  "version": "0.1.3"
+  "version": "0.1.31"
 }
