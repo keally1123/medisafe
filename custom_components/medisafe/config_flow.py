@@ -23,7 +23,7 @@ from .const import DOMAIN
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
-class MedisafeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for medisafe."""
 
     VERSION = 1
