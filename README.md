@@ -116,7 +116,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [black]: https://github.com/psf/black
 [black-shield]: https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge
 [commits-shield]: https://img.shields.io/github/commit-activity/y/keally1123/medisafe.svg?style=for-the-badge
-[commits]: https://github.com/keally1123/medisafe/commits/main
+[commits]: https://github.com/keally1123/medisafe/commits/develop
 [hacs]: https://hacs.xyz
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
 [license-shield]: https://img.shields.io/github/license/keally1123/medisafe.svg?style=for-the-badge
