@@ -96,7 +96,7 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 This project was generated from [@oncleben31](https://github.com/oncleben31)'s [Home Assistant Custom Component Cookiecutter](https://github.com/oncleben31/cookiecutter-homeassistant-custom-component) template.
 
 Code template was mainly taken from [@Ludeeus](https://github.com/ludeeus)'s [integration_blueprint][integration_blueprint] template
-
+Original code for this project came from [@c99koder](https://github.com/c99koder)'s [HA-Medisafe Integration][HA-Medisafe Integration]
 ## License
 
 Copyright (C) 2024 Sam Steele. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
@@ -107,6 +107,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ---
 
+[HA-Medisafe Integration]: https://github.com/c99koder
 [maintenance-shield]: https://img.shields.io/badge/maintained-Sort_of-brightgreen?style=for-the-badge
 [maintenance]: https://github.com/keally1123
 [integration_blueprint]: https://github.com/custom-components/integration_blueprint
