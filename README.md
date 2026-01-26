@@ -8,7 +8,8 @@
 [![Black][black-shield]][black]
 
 [![hacs][hacsbadge]][hacs]
-[![Project Maintenance][maintenance-shield]][user_profile]
+[![Project Maintenance][maintenance-shield]][maintenance]
+
 
 View your medication from [Medisafe Cloud](https://www.medisafe.com/) in [Home Assistant](https://www.home-assistant.io/).
 This integration adds sensors for today's upcoming, taken, skipped, and missed doses, plus sensors for each medication's remaining pills.
@@ -106,6 +107,9 @@ http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 ---
+
+[maintenance-shield]: https://img.shields.io/badge/maintained-Sort_of-brightgreen?style=for-the-badge
+[maintenance]: https://github.com/keally1123
 
 [integration_blueprint]: https://github.com/custom-components/integration_blueprint
 
