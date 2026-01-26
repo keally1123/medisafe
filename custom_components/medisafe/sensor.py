@@ -77,7 +77,7 @@ class MedisafeStatusCountEntity(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.status = status
         self.config_entry = config_entry
-        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{uuid}"
+        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{status}"
 
     @property
     def name(self):
@@ -118,7 +118,7 @@ class MedisafeMedicationEntity(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.uuid = uuid
         self.config_entry = config_entry
-        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{status}"
+        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{uuid}"
 
     @property
     def name(self):
