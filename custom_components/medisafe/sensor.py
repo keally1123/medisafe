@@ -45,9 +45,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
                 _LOGGER.debug(
                     f"Adding: {ent['medicine']['commercialName']} with ID {ent['id']}"
                 )
-                entities.append(
-                    MedisafeMedicationEntity(coordinator, entry, ent["id"])
-                )
+                entities.append(MedisafeMedicationEntity(coordinator, entry, ent["id"]))
 
     entities.append(MedisafeStatusCountEntity(coordinator, entry, "taken"))
     entities.append(MedisafeStatusCountEntity(coordinator, entry, "missed"))
