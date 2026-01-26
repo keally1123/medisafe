@@ -111,12 +111,12 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [black]: https://github.com/psf/black
 [black-shield]: https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge
 [commits-shield]: https://img.shields.io/github/commit-activity/y/c99koder/ha-medisafe.svg?style=for-the-badge
-[commits]: https://github.com/c99koder/ha-medisafe/commits/main
+[commits]: https://github.com/keally1123/medisafe/commits/main
 [hacs]: https://hacs.xyz
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
 [exampleimg]: example.png
 [license-shield]: https://img.shields.io/github/license/c99koder/ha-medisafe.svg?style=for-the-badge
-[maintenance-shield]: https://img.shields.io/badge/maintainer-%40c99koder-blue.svg?style=for-the-badge
+[maintenance-shield]: 
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [pre-commit-shield]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/c99koder/ha-medisafe.svg?style=for-the-badge
