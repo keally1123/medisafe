@@ -26,9 +26,7 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
 class MedisafeApiClient:
-    def __init__(
-        self, username: str, password: str, session: aiohttp.ClientSession
-    ) -> None:
+    def __init__(self, username: str, password: str, session: aiohttp.ClientSession) -> None:
         self._username = username
         self._password = password
         self._session = session
@@ -49,15 +47,18 @@ class MedisafeApiClient:
                 raise ConfigEntryAuthFailed(auth["error"])
 
         if "token" not in auth:
-            _LOGGER.error("No token recieved")
+            _LOGGER.error("No token received")
             raise ConfigEntryAuthFailed("Authentication Failed")
 
         start = int((datetime.today() - timedelta(days=1)).timestamp() * 1000)
-        _end = int((datetime.today() + timedelta(days=1)).timestamp() * 1000)
+
         return await self.api_wrapper(
             "get",
             f"https://api.medisafeproject.com/api/v3/user/{auth['user']['id']}/sync?from=0&fromUpdate=0&includeDeleted=true&includeItems=true&includeClient=true&sync=true&send_pages_sev=false",
-            headers={"Authorization": "Bearer " + auth["token"]['accessToken'], "X-Operation-Execution-Timestamp": str(start)},
+            headers={
+                "Authorization": "Bearer " + auth["token"]["accessToken"],
+                "X-Operation-Execution-Timestamp": str(start),
+            },
         )
 
     async def api_wrapper(
@@ -68,7 +69,6 @@ class MedisafeApiClient:
                 if method == "get":
                     response = await self._session.get(url, headers=headers)
                     return await response.json()
-
                 elif method == "post":
                     response = await self._session.post(url, headers=headers, json=data)
                     return await response.json()
@@ -77,10 +77,10 @@ class MedisafeApiClient:
             _LOGGER.error(
                 "Timeout error fetching information from %s - %s", url, exception
             )
-
         except (KeyError, TypeError) as exception:
             _LOGGER.error("Error parsing information from %s - %s", url, exception)
         except (aiohttp.ClientError, socket.gaierror) as exception:
             _LOGGER.error("Error fetching information from %s - %s", url, exception)
         except Exception as exception:  # pylint: disable=broad-except
             _LOGGER.error("Something really wrong happened! - %s", exception)
+
