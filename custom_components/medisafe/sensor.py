@@ -13,13 +13,10 @@
 import logging
 from datetime import date
 
-from homeassistant.components.sensor import SensorEntity
-from homeassistant.components.sensor import SensorStateClass
+from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import ATTRIBUTION
-from .const import CONF_USERNAME
-from .const import DOMAIN
+from .const import ATTRIBUTION, CONF_USERNAME, DOMAIN
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -31,29 +28,40 @@ async def async_setup_entry(hass, entry, async_add_devices):
     entities = []
 
     if coordinator.data is not None and "groups" in coordinator.data:
-        _LOGGER.info(f"Got {len(coordinator.data['groups'])} medications")
+        _LOGGER.info("Got %s medications", len(coordinator.data["groups"]))
         for ent in coordinator.data["groups"]:
             if "refill" not in ent or "currentNumberOfPills" not in ent["refill"]:
                 _LOGGER.debug(
-                    f"Missing currentNumberOfPills: {ent['medicine']['commercialName']} with ID {ent['id']}"
+                    "Missing currentNumberOfPills: %s with ID %s",
+                    ent["medicine"]["commercialName"],
+                    ent["id"],
                 )
             elif ent["status"] != "ACTIVE":
                 _LOGGER.debug(
-                    f"Inactive medication: {ent['medicine']['commercialName']} with ID {ent['id']}"
+                    "Inactive medication: %s with ID %s",
+                    ent["medicine"]["commercialName"],
+                    ent["id"],
                 )
             else:
                 _LOGGER.debug(
-                    f"Adding: {ent['medicine']['commercialName']} with ID {ent['id']}"
+                    "Adding: %s with ID %s",
+                    ent["medicine"]["commercialName"],
+                    ent["id"],
+                )
+                entities.append(
+                    MedisafeMedicationEntity(coordinator, entry, ent["id"])
                 )
 
-                entities.append(MedisafeMedicationEntity(coordinator, entry, ent["id"]))
+    entities.extend(
+        [
+            MedisafeStatusCountEntity(coordinator, entry, "taken"),
+            MedisafeStatusCountEntity(coordinator, entry, "missed"),
+            MedisafeStatusCountEntity(coordinator, entry, "dismissed"),
+            MedisafeStatusCountEntity(coordinator, entry, "pending"),
+        ]
+    )
 
-    entities.append(MedisafeStatusCountEntity(coordinator, entry, "taken"))
-    entities.append(MedisafeStatusCountEntity(coordinator, entry, "missed"))
-    entities.append(MedisafeStatusCountEntity(coordinator, entry, "dismissed"))
-    entities.append(MedisafeStatusCountEntity(coordinator, entry, "pending"))
-
-    _LOGGER.info(f"Setting up {len(entities)} entities")
+    _LOGGER.info("Setting up %s entities", len(entities))
     async_add_devices(entities)
 
 
@@ -68,11 +76,13 @@ class MedisafeStatusCountEntity(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.status = status
         self.config_entry = config_entry
-        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{status}"
+        self._attr_unique_id = (
+            f"medication_{self.config_entry.entry_id}_{status}"
+        )
 
     @property
     def name(self):
-        return f"medication {self.status}".title()
+        return f"Medication {self.status}".title()
 
     @property
     def available(self):
@@ -86,7 +96,7 @@ class MedisafeStatusCountEntity(CoordinatorEntity, SensorEntity):
                 item["status"] == self.status
                 and date.fromtimestamp(item["date"]) == date.today()
             ):
-                count = count + 1
+                count += 1
         return count
 
     @property
@@ -109,7 +119,9 @@ class MedisafeMedicationEntity(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.uuid = uuid
         self.config_entry = config_entry
-        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{uuid}"
+        self._attr_unique_id = (
+            f"medication_{self.config_entry.entry_id}_{uuid}"
+        )
 
     @property
     def name(self):
@@ -118,35 +130,27 @@ class MedisafeMedicationEntity(CoordinatorEntity, SensorEntity):
     @property
     def state(self):
         medication = self.coordinator.get_medication(self.uuid)
-
-        if "pillsLeft" in medication:
-            return medication["pillsLeft"]
-        else:
-            return None
+        return medication.get("pillsLeft") if medication else None
 
     @property
     def available(self):
         medication = self.coordinator.get_medication(self.uuid)
-
         return medication is not None and "pillsLeft" in medication
 
     @property
     def extra_state_attributes(self):
-        medication = self.coordinator.get_medication(self.uuid)
+        medication = self.coordinator.get_medication(self.uuid) or {}
+
+        attrs = {
+            "account": self.config_entry.data.get(CONF_USERNAME),
+            "attribution": ATTRIBUTION,
+            "integration": DOMAIN,
+        }
 
         if "dose" in medication:
-            return {
-                "account": self.config_entry.data.get(CONF_USERNAME),
-                "attribution": ATTRIBUTION,
-                "integration": DOMAIN,
-                "dose": medication["dose"],
-            }
-        else:
-            return {
-                "account": self.config_entry.data.get(CONF_USERNAME),
-                "attribution": ATTRIBUTION,
-                "integration": DOMAIN,
-            }
+            attrs["dose"] = medication["dose"]
+
+        return attrs
 
     @property
     def entity_picture(self):
@@ -154,5 +158,8 @@ class MedisafeMedicationEntity(CoordinatorEntity, SensorEntity):
 
         if medication is None or medication["shape"] == "capsule":
             return None
-        else:
-            return f"https://web.medisafe.com/medication-icons/pill_{medication['shape']}_{medication['color']}.png"
+
+        return (
+            "https://web.medisafe.com/medication-icons/"
+            f"pill_{medication['shape']}_{medication['color']}.png"
+        )
