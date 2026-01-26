@@ -26,7 +26,9 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
 class MedisafeApiClient:
-    def __init__(self, username: str, password: str, session: aiohttp.ClientSession) -> None:
+    def __init__(
+        self, username: str, password: str, session: aiohttp.ClientSession
+    ) -> None:
         self._username = username
         self._password = password
         self._session = session
@@ -83,4 +85,3 @@ class MedisafeApiClient:
             _LOGGER.error("Error fetching information from %s - %s", url, exception)
         except Exception as exception:  # pylint: disable=broad-except
             _LOGGER.error("Something really wrong happened! - %s", exception)
-
