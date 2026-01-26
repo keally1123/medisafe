@@ -12,7 +12,7 @@
 #  limitations under the License.
 # Base component constants
 NAME = "Medisafe"
-DOMAIN = "medisafe"
+DOMAIN = "medisafe_test"
 DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "0.1.3"
 
