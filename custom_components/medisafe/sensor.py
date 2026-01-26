@@ -13,10 +13,13 @@
 import logging
 from datetime import date
 
-from homeassistant.components.sensor import SensorEntity, SensorStateClass
+from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import SensorStateClass
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import ATTRIBUTION, CONF_USERNAME, DOMAIN
+from .const import ATTRIBUTION
+from .const import CONF_USERNAME
+from .const import DOMAIN
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -48,9 +51,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
                     ent["medicine"]["commercialName"],
                     ent["id"],
                 )
-                entities.append(
-                    MedisafeMedicationEntity(coordinator, entry, ent["id"])
-                )
+                entities.append(MedisafeMedicationEntity(coordinator, entry, ent["id"]))
 
     entities.extend(
         [
@@ -76,9 +77,7 @@ class MedisafeStatusCountEntity(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.status = status
         self.config_entry = config_entry
-        self._attr_unique_id = (
-            f"medication_{self.config_entry.entry_id}_{status}"
-        )
+        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{uuid}"
 
     @property
     def name(self):
@@ -119,9 +118,7 @@ class MedisafeMedicationEntity(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.uuid = uuid
         self.config_entry = config_entry
-        self._attr_unique_id = (
-            f"medication_{self.config_entry.entry_id}_{uuid}"
-        )
+        self._attr_unique_id = f"medication_{self.config_entry.entry_id}_{status}"
 
     @property
     def name(self):
