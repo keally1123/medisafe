@@ -120,5 +120,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [pre-commit-shield]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/c99koder/ha-medisafe.svg?style=for-the-badge
-[releases]: https://github.com/c99koder/ha-medisafe/releases
-[user_profile]: https://github.com/c99koder
+[releases]: https://github.com/keally1123/medisafe/releases
+[user_profile]: https://github.com/keally1123
