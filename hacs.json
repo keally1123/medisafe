@@ -1,5 +1,6 @@
 {
   "name": "Medisafe",
   "hacs": "1.6.0",
-  "homeassistant": "2024.8.0"
+  "homeassistant": "2024.8.0",
+  "content_in_root": false
 }
