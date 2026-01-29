@@ -97,7 +97,7 @@ This project was generated from [@oncleben31](https://github.com/oncleben31)'s [
 
 Code template was mainly taken from [@Ludeeus](https://github.com/ludeeus)'s [integration_blueprint][integration_blueprint] template.
 
-Original code for this project came from [@c99koder](https://github.com/c99koder)'s [HA-Medisafe Integration][HA-Medisafe Integration].
+Original code for this project came from [@c99koder](https://github.com/c99koder)'s [HA-Medisafe Integration][ha-medisafe integration].
 
 ## License
 
