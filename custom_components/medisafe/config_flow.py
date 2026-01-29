@@ -1,15 +1,3 @@
-#  Copyright (C) 2022 Sam Steele
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#  http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant import config_entries
@@ -51,14 +39,11 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         ),
                         data=user_input,
                     )
-                else:
-                    return self.async_create_entry(
-                        title=user_input[CONF_USERNAME], data=user_input
-                    )
-            else:
-                self._errors["base"] = "auth"
+                return self.async_create_entry(
+                    title=user_input[CONF_USERNAME], data=user_input
+                )
 
-            return await self._show_config_form(user_input)
+            self._errors["base"] = "auth"
 
         return await self._show_config_form(user_input)
 
@@ -71,23 +56,29 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return await self._show_config_form(user_input)
 
     async def _show_config_form(self, user_input):  # pylint: disable=unused-argument
-        """Show the configuration form to edit location data."""
+        """Show the configuration form."""
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_USERNAME): str, vol.Required(CONF_PASSWORD): str}
+                {
+                    vol.Required(CONF_USERNAME): str,
+                    vol.Required(CONF_PASSWORD): str,
+                }
             ),
             errors=self._errors,
+            description_placeholders={
+                "medisafe_url": "https://web.medisafe.com/",
+                "docs_url": "https://github.com/keally1123/medisafe",
+            },
         )
 
     async def _test_credentials(self, username, password):
-        """Return true if credentials is valid."""
+        """Return true if credentials are valid."""
         try:
             client = MedisafeApiClient(
                 username, password, async_create_clientsession(self.hass)
             )
             await client.async_get_data()
             return True
-        except Exception:  # pylint: disable=broad-except
-            pass
-        return False
+        except Exception:
+            return False
