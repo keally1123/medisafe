@@ -16,6 +16,7 @@ from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.update_coordinator import UpdateFailed
@@ -29,14 +30,11 @@ from .const import STARTUP_MESSAGE
 
 # from homeassistant.exceptions import ConfigEntryAuthFailed
 
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
 SCAN_INTERVAL = timedelta(minutes=15)
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
-
-
-async def async_setup(hass: HomeAssistant, config: dict):
-    """Set up this integration using YAML is not supported."""
-    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
@@ -77,8 +75,6 @@ class MedisafeDataUpdateCoordinator(DataUpdateCoordinator):
         """Update data via library."""
         try:
             return await self.config_entry.runtime_data.client.async_get_data()
-        #        except ConfigEntryAuthFailed as exception:
-        #            raise exception
         except Exception as exception:
             raise UpdateFailed() from exception
 
@@ -86,26 +82,22 @@ class MedisafeDataUpdateCoordinator(DataUpdateCoordinator):
         if "medications" not in self.data:
             _LOGGER.error("Medisafe has no data yet")
             return None
-        else:
-            for medication in self.data["medications"]:
-                if medication["id"] == uuid:
-                    return medication
+        for medication in self.data["medications"]:
+            if medication["id"] == uuid:
+                return medication
 
         _LOGGER.error(f"Medication not found for UUID: {uuid}")
-
         return None
 
     def get_doctor(self, uuid):
         if "doctors" not in self.data:
             _LOGGER.error("Medisafe has no data yet")
             return None
-        else:
-            for doctor in self.data["doctors"]:
-                if doctor["id"] == uuid:
-                    return doctor
+        for doctor in self.data["doctors"]:
+            if doctor["id"] == uuid:
+                return doctor
 
         _LOGGER.error(f"Doctor not found for UUID: {uuid}")
-
         return None
 
 
