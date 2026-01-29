@@ -1,7 +1,7 @@
 {
   "domain": "medisafe",
   "name": "Medisafe",
-  "codeowners": ["@c99koder","@keally1123"],
+  "codeowners": ["@c99koder", "@keally1123"],
   "config_flow": true,
   "dependencies": ["http"],
   "documentation": "https://github.com/keally1123/medisafe",
