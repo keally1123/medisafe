@@ -2,19 +2,9 @@
   "config": {
     "step": {
       "user": {
-        "description": "Enter your Medisafe username and password below.\nIf you're unable to login, check https://web.medisafe.com/.\nIf you need help with the configuration have a look here: https://github.com/keally1123/medisafe",
-        "data": {
-          "username": "Username",
-          "password": "Password"
-        }
+        "title": "Medisafe",
+        "description": "Enter your Medisafe username and password below.\nIf you're unable to login, check {medisafe_url}.\nIf you need help with the configuration have a look here: {docs_url}"
       }
-    },
-    "error": {
-      "auth": "Username/Password is wrong."
-    },
-    "abort": {
-      "reauth_successful": "Configuration was updated successfully",
-      "reconfigure_successful": "Configuration was updated successfully"
     }
   }
 }
